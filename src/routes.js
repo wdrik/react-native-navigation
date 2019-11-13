@@ -90,16 +90,94 @@
 // export default createAppContainer(mainNavigation);
 
 // ***BottomTabNavigator                --------------------------------------------------------------------------------
+// import { createAppContainer } from "react-navigation";
+
+// import { createBottomTabNavigator } from "react-navigation-tabs";
+
+// import Home from "./pages/Home";
+// import Teste from "./pages/Teste";
+
+// const mainNavigation = createBottomTabNavigator({
+//   Home,
+//   Teste
+// });
+
+// export default createAppContainer(mainNavigation);
+
+// ***MaterialBottomTabNavigator                --------------------------------------------------------------------------------
+// import React from "react";
+// import { createAppContainer } from "react-navigation";
+// import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
+// import Icon from "react-native-vector-icons/FontAwesome";
+
+// import Home from "./pages/Home";
+// import Teste from "./pages/Teste";
+
+// Icon.loadFont();
+
+// const mainNavigation = createMaterialBottomTabNavigator(
+//   {
+//     Home: {
+//       screen: Home,
+//       navigationOptions: () => ({
+//         tabBarIcon: ({ focused }) => (
+//           <Icon name="lock" size={20} color={focused ? "#fff" : "#ddd"} />
+//         )
+//       })
+//     },
+//     Teste: {
+//       screen: Teste,
+//       navigationOptions: () => ({
+//         tabBarIcon: ({ focused }) => (
+//           <Icon name="rocket" size={20} color={focused ? "#fff" : "#ddd"} />
+//         )
+//       })
+//     }
+//   },
+//   {
+//     barStyle: {
+//       backgroundColor: "#Da552f"
+//     }
+//   }
+// );
+
+// export default createAppContainer(mainNavigation);
+
+// ***MaterialTopTabNavigator                --------------------------------------------------------------------------------
+import React from "react";
+import { SafeAreaView } from "react-native";
+
 import { createAppContainer } from "react-navigation";
 
-import { createBottomTabNavigator } from "react-navigation-tabs";
+import {
+  createMaterialTopTabNavigator,
+  MaterialTopTabBar
+} from "react-navigation-tabs";
 
 import Home from "./pages/Home";
 import Teste from "./pages/Teste";
 
-const mainNavigation = createBottomTabNavigator({
-  Home,
-  Teste
-});
+function SafeAreaMaterialTopTabBar(props) {
+  return (
+    <SafeAreaView>
+      <MaterialTopTabBar {...props} />
+    </SafeAreaView>
+  );
+}
+
+const mainNavigation = createMaterialTopTabNavigator(
+  {
+    Home,
+    Teste
+  },
+  {
+    tabBarComponent: SafeAreaMaterialTopTabBar,
+    tabBarOptions: {
+      tabStyle: {
+        backgroundColor: "#Da552f"
+      }
+    }
+  }
+);
 
 export default createAppContainer(mainNavigation);
